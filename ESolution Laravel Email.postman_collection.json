@@ -1,0 +1,234 @@
+{
+  "info": {
+    "name": "ESolution Laravel Email",
+    "_postman_id": "laremail-2025-10-06",
+    "description": "Postman collection for elgibor-solution/laravel-email",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Template",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/laravel-email/templates",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "templates"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"promo_sep\", \"subject\": \"Promo September\", \"html\": \"<p>Hi {{name}} {{tracking_pixel}}</p>\", \"text\": \"Hi {{name}}\", \"from_email\": \"promo@example.com\", \"from_name\": \"Promo Team\"}"
+        }
+      }
+    },
+    {
+      "name": "List Templates",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/laravel-email/templates",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "templates"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Broadcast",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/laravel-email/broadcasts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "broadcasts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Promo 10.10\", \"template_id\": 1, \"provider_key\": \"sendgrid_1\"}"
+        }
+      }
+    },
+    {
+      "name": "Add Recipients",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/laravel-email/broadcasts/{{broadcast_id}}/recipients",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "broadcasts",
+            "{{broadcast_id}}",
+            "recipients"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"recipients\": [{\"email\": \"a@example.com\", \"name\": \"A\"}, {\"email\": \"b@example.com\", \"name\": \"B\"}]}"
+        }
+      }
+    },
+    {
+      "name": "Start Broadcast",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/laravel-email/broadcasts/{{broadcast_id}}/start",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "broadcasts",
+            "{{broadcast_id}}",
+            "start"
+          ]
+        }
+      }
+    },
+    {
+      "name": "SendGrid Webhook (test)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/laravel-email/webhook/sendgrid",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "webhook",
+            "sendgrid"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"event\": \"open\", \"broadcast_id\": 1, \"recipient_id\": 1, \"recipient_token\": \"{{recipient_token}}\", \"email\": \"a@example.com\"}]"
+        }
+      }
+    },
+    {
+      "name": "List Suppressions",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/laravel-email/suppressions?q=",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "suppressions"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Suppression",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/laravel-email/suppressions",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "suppressions"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"blocked@example.com\", \"reason\": \"manual\"}"
+        }
+      }
+    },
+    {
+      "name": "Delete Suppression",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/laravel-email/suppressions/{{suppression_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "laravel-email",
+            "suppressions",
+            "{{suppression_id}}"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost"
+    },
+    {
+      "key": "broadcast_id",
+      "value": "1"
+    },
+    {
+      "key": "recipient_token",
+      "value": "REPLACE_ME"
+    },
+    {
+      "key": "suppression_id",
+      "value": "1"
+    }
+  ]
+}

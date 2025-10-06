@@ -1,0 +1,32 @@
+{
+  "name": "elgibor-solution/laravel-email",
+  "description": "Laravel package for multi-provider broadcast email with SendGrid, templates, events tracking, suppression list, and anti-spam optimizations.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "PT Elgibor Solusi Digital",
+      "email": "tommy@elgibor-solution.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "illuminate/support": "^10.0|^11.0|^12.0",
+    "illuminate/http": "^10.0|^11.0|^12.0",
+    "illuminate/queue": "^10.0|^11.0|^12.0",
+    "illuminate/database": "^10.0|^11.0|^12.0",
+    "sendgrid/sendgrid": "^8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "ESolution\\\\LaravelEmail\\\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ESolution\\\\LaravelEmail\\\\LaravelEmailServiceProvider"
+      ]
+    }
+  }
+}
