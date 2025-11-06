@@ -19,13 +19,13 @@
   },
   "autoload": {
     "psr-4": {
-      "ESolution\\\\LaravelEmail\\\\": "src/"
+      "ESolution\\LaravelEmail\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "ESolution\\\\LaravelEmail\\\\LaravelEmailServiceProvider"
+        "ESolution\\LaravelEmail\\LaravelEmailServiceProvider"
       ]
     }
   }
